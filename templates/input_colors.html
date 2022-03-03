@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Input letters by color{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <label for="blacks">Black letters in any order</label>
+        <button id="clearblacks">Clear Blacks</button>        <br/>
+        <input name="blacks" id="blacks" value="{{ blacks }}" ><br/><br/>
+        <label for="yellows">Yellow letters in any order</label>
+        <button id="clearyellows">Clear Yellows</button>    <br/>
+        <input name="yellows" id="yellows" value="{{ yellows }}" ><br/><br/>
+        <label for="greens">Green letters at correct location or -</label><br/>
+        <input name="greens" id="greens" value="{{ greens }}" >
+        <button id="cleargreens">Clear</button>
+        <br/><br/>
+        <input type="submit" value="Submit"><br/><br/>
+
+    {% autoescape false %}
+        <p> {{ hints }} </p>
+    {% endautoescape %}
+
+    </form>
+    <script language="Javascript">
+        document.querySelector("#clearblacks").onclick = () => {
+            //console.info("clearblack clicked");
+            document.querySelector("#blacks").value = "";
+        }
+        document.querySelector("#clearyellows").onclick = () => {
+            console.info("clearyellows clicked");
+            document.querySelector("#yellows").value = "";
+        }
+        document.querySelector("#cleargreens").onclick = () => {
+            console.info("cleargreens clicked");
+            document.querySelector("#greens").value = "-----";
+        }
+    </script>
+{% endblock %}
